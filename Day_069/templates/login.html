@@ -1,0 +1,51 @@
+{% from "bootstrap5/form.html" import render_form %} {% block content %} {%
+include "header.html" %}
+{% from 'bootstrap5/form.html' import render_field %}
+
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="background-image: url('../static/assets/img/login-bg.jpg')"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="page-heading">
+          <h1>Log In</h1>
+          <span class="subheading">Welcome Back!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="mb-4">
+  <div class="container">
+    <div class="row">
+      <!-- TODO: add a flash message here for users registering twice -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <!--TODO: render login form here-->
+        <form action="{{ url_for('login') }}" method="post">
+          {{ form.hidden_tag() }}
+
+          {{ form.email(class="form-control mb-3", placeholder="Email") }}
+          {{ form.password(class="form-control mb-3", placeholder="Password") }}
+
+          {{ render_field(form.submit) }}
+        </form>
+        <a href="{{url_for('register')}}">Done have an account? Register.</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include "footer.html" %} {% endblock %}
