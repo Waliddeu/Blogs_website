@@ -11,7 +11,6 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bcrypt import Bcrypt
 from typing import List
-from flask_gravatar import Gravatar
 import os
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from dotenv import load_dotenv
